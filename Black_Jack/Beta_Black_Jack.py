@@ -1,13 +1,13 @@
 from random import *
-from PyQt6.QtWidgets import QApplication, QWidget
+# from PyQt6.QtWidgets import QApplication, QWidget
 
-import sys 
+# import sys 
 
 
-app = QApplication(sys.argv)
-window = QWidget()
-window.show()  
-app.exec()
+# app = QApplication(sys.argv)
+# window = QWidget()
+# window.show()  
+# app.exec()
 
 
 
@@ -17,7 +17,7 @@ def play_Black_Jack():
     
     print()
     
-    all_cards=["2","3","4","5","6","7","8","9","Валет","Дама","Король","Туз"]
+    all_cards=("2","3","4","5","6","7","8","9","Валет","Дама","Король","Туз")
     sum=0
     your_cards=[]
     
