@@ -1,4 +1,5 @@
 from random import *
+from termcolor import colored
 # from PyQt6.QtWidgets import QApplication, QWidget
 
 # import sys 
@@ -17,43 +18,43 @@ def play_Black_Jack():
     
     print()
     
-    all_cards=("2","3","4","5","6","7","8","9","Валет","Дама","Король","Туз")
+    all_cards={"2" : 2, "3" : 3,"4" : 4,"5" : 5,"6" : 6, "7": 7, "8" : 8 ,"9" : 9, "10" : 10 , "Валет" : 10, "Дама" : 10, "Король" : 10, "Туз" : 11}
     sum=0
-    your_cards=[]
+    your_cards=list()
+    card=""
     
     print("Ходы:")
     
+    input("Чтобы взять карту введите: <Карту> (без '<>') - ") #"Виртуальная" кнопка
     while sum<21:
-        input("Чтобы взять карту введите: <Карту> (без '<>') - ") #"Виртуальная" кнопка
-        card=all_cards[randint(0,len(all_cards)-1)]
-        your_cards.append(card)
+        card = choice(list(all_cards.keys()))
+
+        if card == "Туз":
+            if (sum + int(all_cards[card])) <= 21:
+                sum += all_cards[card]
+            else:
+                sum += 1
+        else:
+            sum += all_cards[card]
         
-        if card in all_cards[0:8]:
-            sum+=int(card)
-            
-        if card in all_cards[8:11]:
-            sum+=10
-            
-        if card=="Туз" and sum+11<=21:
-            sum+=11
-            
-        if card=="Туз" and sum+11>21:
-            sum+=1
-            
+        your_cards.append(card)
         print("Ваша карта", card)
-        print("Сумма:",sum)
+        print("Сумма:", sum)
         print()
+        if "нет" in input("Если хотите закончить, то введите <Нет>, иначе введите <Да>: ").lower():
+            break
+        
     print("Итог:")
     
     if sum==21:
-        your_cards=",".join(your_cards)
-        print("Ты выйграл!!!")
+        your_cards = ", ".join(your_cards)
+        print(colored("Ты выйграл!!!", "green"))
         print("Ваши карты:",your_cards)
         print("Сумма:", sum)
         
     else:
         your_cards=", ".join(your_cards)
-        print("Ты проиграл!!!")
+        print(colored("Ты проиграл!!!", "red"))
         print("Ваши карты:",your_cards)
         print("Сумма:", sum)
         
